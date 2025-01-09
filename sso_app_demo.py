@@ -24,7 +24,6 @@ GOOGLE_CLIENT_ID = config("GOOGLE_CLIENT_ID", default="")
 GOOGLE_CLIENT_SECRET = config("GOOGLE_CLIENT_SECRET", default="")
 SECRET_KEY = config("SECRET_KEY", default="default-secret-key")
 
-
 save_api_key_js = """
 function(api_key) {
     setStorage('google_api_key', api_key);

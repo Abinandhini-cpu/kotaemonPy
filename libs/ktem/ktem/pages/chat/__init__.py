@@ -9,6 +9,7 @@ from ktem.app import BasePage
 from ktem.components import reasonings
 from ktem.db.models import Conversation, engine
 from ktem.index.file.ui import File
+from ktem.metrics.counter import MetricCounter
 from ktem.reasoning.prompt_optimization.mindmap import MINDMAP_HTML_EXPORT_TEMPLATE
 from ktem.reasoning.prompt_optimization.suggest_conversation_name import (
     SuggestConvNamePipeline,
@@ -825,6 +826,7 @@ class ChatPage(BasePage):
         request: gr.Request,
     ):
         """Submit a message to the chatbot"""
+        MetricCounter.MESSAGES.inc()
         if KH_DEMO_MODE:
             sso_user_id = check_rate_limit("chat", request)
             print("User ID:", sso_user_id)

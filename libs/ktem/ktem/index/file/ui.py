@@ -14,6 +14,7 @@ from gradio.data_classes import FileData
 from gradio.utils import NamedString
 from ktem.app import BasePage
 from ktem.db.engine import engine
+from ktem.metrics.counter import MetricCounter
 from ktem.utils.render import Render
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -1195,6 +1196,7 @@ class FileIndexPage(BasePage):
         user_id,
         request: gr.Request,
     ):
+        MetricCounter.FILE_UPLOAD.inc()
         if KH_DEMO_MODE:
             check_rate_limit("file_upload", request)
 
