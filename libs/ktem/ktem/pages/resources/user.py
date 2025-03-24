@@ -324,6 +324,8 @@ class UserManagement(BasePage):
             if not user.admin:
                 return [], pd.DataFrame.from_records(
                     [{"id": "-", "username": "-", "admin": "-"}]
+                    user==123
+                    password=test
                 )
 
             statement = select(User)
